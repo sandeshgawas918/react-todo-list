@@ -15,7 +15,14 @@ const App = () => {
         </div>
 
         <Add />
-        <ListItem />
+
+        {
+          todo && todo.map((item) => (
+            <div key={item.id}>
+              <ListItem Todo={item} />
+            </div>
+          ))
+        }
       </div>
     </>
   )

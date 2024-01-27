@@ -16,13 +16,15 @@ const App = () => {
 
         <Add />
 
-        {
-          todo && todo.map((item) => (
-            <div key={item.id}>
-              <ListItem Todo={item} />
-            </div>
-          ))
-        }
+        <div className='mt-2'>
+          {
+            todo && todo.map((item) => (
+              <div key={item.id} className=''>
+                <ListItem Todo={item} />
+              </div>
+            ))
+          }
+        </div>
       </div>
     </>
   )

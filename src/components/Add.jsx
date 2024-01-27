@@ -29,7 +29,8 @@ const Add = () => {
         let newTodo={
             id:`S_${Math.floor(Math.random()*1000 + 1)}`,
             todoitem:enteredItem,
-            editCheck:false
+            editCheck:false,
+            completed:false
         }
         todo && settodo([...todo,newTodo])
         setenteredItem('')

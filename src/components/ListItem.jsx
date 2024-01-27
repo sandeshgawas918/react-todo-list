@@ -9,7 +9,7 @@ const ListItem = ({ Todo }) => {
     const { todo, settodo } = useContext(myContext)
 
     const [currentTodoMSg, setcurrentTodoMsg] = useState(Todo.todoitem)
-    const [completed, setcompleted] = useState(false)
+    // const [completed, setcompleted] = useState(Todo.completed)
 
     let deleteTask = (id) => {
         let updatedTodo = todo.filter((item) => {
@@ -34,19 +34,29 @@ const ListItem = ({ Todo }) => {
         ))
     }
 
+    let updateCheck = (id) => {
+        settodo((prev) => (
+            prev.map((prevtodo) => (
+                prevtodo.id == id ? { ...prevtodo, completed: !prevtodo.completed } : prevtodo
+            ))
+        ))
+    }
+
     return (
         <div>
             <div className="row">
                 <div className="col-md-6 m-auto">
-                    <div className={`d-flex flex-row p-3 text-dark h5 my-4 rounded-3 fw-semibold text-secondary`}
-                        style={{ backgroundColor: Todo.editCheck ? '#D0A2F7' : (completed ? '#65B741' : '#D0A2F7') }}
+                    <div className={`d-flex flex-row p-2 text-dark h5 my-2 rounded-3 fw-semibold text-secondary`}
+                        style={{ backgroundColor: Todo.editCheck ? '#D0A2F7' : (Todo.completed ? '#65B741' : '#D0A2F7') }}
                     >
-                    <input checked={completed} onChange={()=>{setcompleted(!completed)}} type="checkbox" name="" className=' form-check me-2 mt-1' id="" />
-                        <input className={` w-75 ${Todo.editCheck ? 'border-1 rounded-1 border-success p-1' : 'border-0'}  ${completed ? ' text-decoration-line-through' : ' text-decoration-none' }`}
+                        <input checked={Todo.completed}
+                            onChange={() => { updateCheck(Todo.id) }}
+                            type="checkbox" name="" className=' form-check me-2 mt-1' id="" />
+                        <input className={` w-75 ${Todo.editCheck ? 'border-1 rounded-1 border-success p-1' : 'border-0'}  ${Todo.completed ? ' text-decoration-line-through' : ' text-decoration-none'}`}
                             // contentEditable={Todo.editCheck}
                             readOnly={!Todo.editCheck}
                             value={currentTodoMSg}
-                            onChange={(e)=>{setcurrentTodoMsg(e.target.value)}}
+                            onChange={(e) => { setcurrentTodoMsg(e.target.value) }}
                             style={{ backgroundColor: Todo.editCheck ? '#65B741' : '#D0A2F7' }}
                         // onInput={(e)=>{setcurrentTodoMsg(e.target.textContent || '')}}
                         >

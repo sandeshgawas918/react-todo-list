@@ -7,7 +7,7 @@ import { LocalStorageContext } from './context/LocalStorageContext.jsx'
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: 'react-todo-list',
     element: <App />
   }
 ])
